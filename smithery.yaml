@@ -1,0 +1,55 @@
+name: barcode-label-mcp
+version: 1.0.0
+description: >
+  Generate and print barcode label PDFs from an Excel product list.
+  Supports EAN-13, Code128, Code39, UPC-A, ISBN-13 barcodes and
+  four label formats: Standard, GS1-128, Retail, and Warehouse.
+
+runtime: python
+entrypoint: barcode_mcp_server.py
+
+startCommand:
+  type: stdio
+  command: python3
+  args:
+    - barcode_mcp_server.py
+
+configSchema:
+  type: object
+  properties:
+    excel_file:
+      type: string
+      description: >
+        Absolute path to your Excel (.xlsx) product file.
+        Columns expected: Product Name, Barcode, Price, Category.
+      default: ""
+  required: []
+
+tools:
+  - name: list_products
+    description: List all products from the Excel file.
+  - name: search_products
+    description: Search products by name, barcode, or any field.
+  - name: print_labels
+    description: >
+      Generate a PDF of barcode labels for all or filtered products.
+      Supports formats: standard, gs1-128, retail, warehouse.
+  - name: print_single_label
+    description: Print a single label by product name or barcode value.
+  - name: list_formats
+    description: List all available label formats and barcode types.
+
+author:
+  name: Hitendra Venkatappa
+  email: hitendra.h@gmail.com
+
+license: MIT
+keywords:
+  - barcode
+  - labels
+  - gs1
+  - ean13
+  - printing
+  - excel
+  - pdf
+  - inventory

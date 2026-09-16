@@ -1,0 +1,4 @@
+openpyxl
+python-barcode
+pillow
+reportlab
