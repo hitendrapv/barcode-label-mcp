@@ -91,6 +91,24 @@ class MCPHandler(BaseHTTPRequestHandler):
             self.wfile.write(body)
             return
 
+        if path == "/.well-known/mcp/server-card.json":
+            card = {
+                "name": "barcode-label-mcp",
+                "version": "1.0.0",
+                "description": "Generate and print barcode label PDFs from Excel. Supports GS1-128, Retail, Warehouse and Standard formats.",
+                "author": {"name": "Hitendra Venkatappa"},
+                "repository": "https://github.com/hitendrapv/barcode-label-mcp",
+                "transport": [{"type": "sse", "url": "/sse"}],
+                "tools": [t["name"] for t in TOOLS]
+            }
+            body = json.dumps(card).encode()
+            self.send_response(200)
+            self.send_header("Content-Type", "application/json")
+            self._cors()
+            self.end_headers()
+            self.wfile.write(body)
+            return
+
         if path == "/sse":
             # SSE endpoint — client connects here and receives server events
             session_id = str(uuid.uuid4())
