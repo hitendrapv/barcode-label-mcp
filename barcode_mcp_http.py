@@ -18,6 +18,7 @@ for _d in (os.listdir(_VENV) if os.path.isdir(_VENV) else []):
 from barcode_mcp_server import TOOLS, TOOL_FNS, text_result, error_result
 
 PORT = int(os.environ.get("PORT", 8000))
+BASE_URL = os.environ.get("RENDER_EXTERNAL_URL", "https://barcode-label-mcp.onrender.com").rstrip("/")
 
 SERVER_CARD = {
     "name": "barcode-label-mcp",
@@ -25,7 +26,7 @@ SERVER_CARD = {
     "description": "Generate and print barcode label PDFs from Excel. Supports GS1-128, Retail, Warehouse and Standard formats.",
     "author": {"name": "Hitendra Venkatappa"},
     "repository": "https://github.com/hitendrapv/barcode-label-mcp",
-    "transport": [{"type": "http", "url": "/mcp"}],
+    "transport": [{"type": "http", "url": f"{BASE_URL}/mcp"}],
     "tools": [t["name"] for t in TOOLS]
 }
 
