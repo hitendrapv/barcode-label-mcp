@@ -25,7 +25,7 @@ List all products in my Excel file
 ### 1. Clone the repo
 
 ```bash
-git clone https://github.com/hitendrah/barcode-label-mcp.git
+git clone https://github.com/hitendrapv/barcode-label-mcp.git
 cd barcode-label-mcp
 ```
 
